@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JIT Search</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.1.2/coffee-script.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script src="js/lib/date-us.js"></script>
+	<script src="js/jitsearch.coffee" type="text/coffeescript"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<script>
+		$(document).ready(function(){
+			$('#txtWantedSkills').focus();
+		});
+	</script>
+</head>
+<body>
+	<div id="container">
+		<div id="search">
+			Find: <input type="text" id="txtWantedSkills" placeholder="" />
+			skills <span id="jit">JIT for
+			<input type="text" id="txtJitDate" /></span>
+			<input id="btnSearch" type="button" value="GO" />
+		</div>
+		<div id="filters" class="clearfix">
+			<div id="jitDateFilter" class="filter hide">
+				<span></span>
+				<a href="#" class="removeFilter">&nbsp;</a>
+			</div>
+		</div>
+		<div id="items"></div>
+	</div>
+
+	<script id="itemTemplate" type="text/x-jQuery-tmpl">
+        <div class="item clearfix">
+            <img src="${image}" width="48" height="48" alt="${name}" />
+			<div class="item-content">
+				<span class="name">${name}</span>&nbsp;<span class="contact-info">${mobile}</span>
+				<div class="skills">${skills}</div>
+				<div>${utilization}</div>
+            	<div class="contact-info"><a href="mailto:${email}">${email}</a></div>
+			</div>
+        </div>
+    </script>
+</body>
+</html>

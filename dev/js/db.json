@@ -1,0 +1,106 @@
+{
+	"consultants": [
+			{
+				"employeeId": 134,
+				"name": "Karl Böhlmark",
+				"image": "http://a3.twimg.com/profile_images/1562938172/fb_normal.png",
+				"mobile": "073-558 26 51",
+				"phone": "",
+				"shortPhoneNo": "",
+				"email": "karl.bohlmark@mogul.se",
+				"skills": [
+					"JavaScript",
+					"nodejs",
+					"CoffeeScript",
+					".NET"
+				],
+				"roles": [
+					"Software Archtiect",
+					"Lead Developer",
+					"Team Coach"
+				],
+				"projects": [
+					{
+						"name": "Manpower",
+						"startdate": "2010-11-29",
+						"enddate": "2011-10-31"
+					}
+				]
+			},
+			{
+				"employeeId": 100,
+				"name": "David Cheng",
+				"image": "http://a2.twimg.com/profile_images/1235435332/nyfejja_normal.jpg",
+				"mobile": "073-378 43 06",
+				"phone": "",
+				"shortPhoneNo": "",
+				"email": "david.cheng@solutionblvd.se",
+				"skills": [
+						".NET",
+						"nodejs",
+						"JavaScript",
+						"mongoDB"
+				],
+				"roles": [
+					"Developer",
+					"CEO"
+				],
+				"projects": [
+					{
+						"name": "Cyrus",
+						"startdate": "2011-05-19",
+						"enddate": "2011-12-31"
+					}
+				]
+			},
+			{
+				"employeeId": 109,
+				"name": "Oskar Wiksten",
+				"image": "http://cdn.androlib.com/appicon/app-qtiwE.cs.png",
+				"mobile": "073-558 37 50",
+				"phone": "",
+				"shortPhoneNo": "",
+				"email": "oskar.wiksten@connecta.se",
+				"skills": [
+						"Java",
+						"C#",
+						".NET",
+						"SQL",
+						"mongoDB",
+						"Android"
+				],
+				"roles": [
+					"Software Architect",
+					"Scrum Master",
+					"Lead Developer"
+				],
+				"projects": [
+					{
+						"name": "Cyrus",
+						"startdate": "2011-02-01",
+						"enddate": "2012-05-31"
+					}
+				]
+			}
+		],
+	"skills": [
+		{
+			"name": "JavaScript",
+			"tags": ["javascript", "js", "ecmascript", "front-end", "frontend", "front end"]
+		},
+		{
+			"name": "mongoDB",
+			"tags": ["mongodb", "mongo", "nosql"]
+		},
+		{
+			"name": ".NET",
+			"tags": [".net", "c#"]
+		}
+	],
+	"roles": [
+		"Developer",
+		"Lead Developer",
+		"Software Architect",
+		"Scrum Master"
+	]
+}

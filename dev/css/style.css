@@ -1,0 +1,87 @@
+body{
+	background-color: black;
+	font-family: "Courier New";
+	color: white;
+	font-size: 15px;
+}
+div#container {
+	max-width: 800px;
+	margin: 20px auto 0 auto;
+}
+
+input[type=text]{
+	border-bottom: dashed 3px white;
+	border-width: 0 0 2px 0;
+	font: normal 15px "Courier New";
+	color: magenta;
+	background: #000000;
+}
+
+#txtJitDate {width: 130px;}
+
+div#filters {margin: 14px 0; padding: 10px 0;}
+
+div.filter{
+	float:left;
+	position: relative;
+	font-size: 13px;
+	border: solid 2px #3d3d3d;
+	border-radius: 3px;
+	background: black;
+	color: cyan;
+	padding: 10px 18px 6px 8px;
+}
+
+a.removeFilter{
+	position: absolute;
+	top: 2px;
+	right: 4px;
+	display: block;
+	width: 12px;
+	height: 14px;
+	background-position: right;
+	background: url(http://www.systembolaget.se/img/sprites/icons.png) no-repeat 0px -297px;
+}
+
+.hide {
+	display: none;
+}
+
+div.item {
+	position: relative;
+	margin: 12px 10px 14px 0;
+	padding-bottom: 10px;
+	border-bottom: solid 1px #3d3d3d; }
+
+div.item img, div.item-content{
+	float: left;
+	margin-right: 8px;
+	color: #b7b7b7;
+}
+
+a:link{text-decoration: none; color: lightgray;}
+a:visited{text-decoration: none; color: lightgray;}
+a:hover {text-decoration: none; color: orange;}
+a:active {text-decoration: none; color: lightgray;}
+
+span.name {
+	font-size: 17px;
+	color: lime;
+}
+
+span.contact-info{
+	font-size: 13px;
+}
+
+div.skills {
+	font-size: 17px;
+	color: white;
+	margin: 4px 0;
+}
+
+/* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
+   j.mp/bestclearfix */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix { zoom: 1; }
