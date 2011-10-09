@@ -11,6 +11,7 @@ $('#btnSearch').live 'click', (e) ->
 	wantedSkill = normalizeSearchTerm($('#txtWantedSkills').val())
 	theSkilled = findSkilledConsultants wantedSkill.toString()
 
+	# Default to today if no date is specified
 	jitDate = jitDate or Date.today()
 
 	for skilled in theSkilled
@@ -32,7 +33,7 @@ jitDateFilter = $('#jitDateFilter')
 txtJitDate.keyup (e) ->
 	date = Date.parse(txtJitDate.val())
 	if date != null
-		jitDateFilter.removeClass("hide").find('span').text(date.toString "dddd MMM dd yyyy")
+		jitDateFilter.removeClass("hide").find('span').text(date.toString "dddd d MMM yyyy")
 	else
 		jitDateFilter.addClass("hide")
 
@@ -47,11 +48,22 @@ getUtilizationForConsultant = (consultant, jitDate) ->
 		projectStartDate = new Date(intersectingProjects[p].startdate)
 		projectEndDate = new Date(intersectingProjects[p].enddate)
 
-		d = 0
+		day = 0
 
-		while d < jitDateRange.length
-			utilization[d] = if jitDateRange[d].between(projectStartDate, projectEndDate) then '$' else '0'
-			d++
+		while day < jitDateRange.length
+			utilization[day] = {date: jitDateRange[day], hours: ''}
+
+			if jitDateRange[day].getDay() == 0 or jitDateRange[day].getDay() == 6
+				day++
+				continue
+
+			if jitDateRange[day].between(projectStartDate, projectEndDate)
+				utilization[day].hours = '8'
+			else
+				utilization[day].hours = '0'
+
+			#utilization[day].hours = if jitDateRange[day].between(projectStartDate, projectEndDate) then '$' else '0'
+			day++
 
 		p++
 

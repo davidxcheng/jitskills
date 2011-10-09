@@ -7,8 +7,10 @@ app.use('/js', express.static(__dirname + '/js'));
 
 app.get('/jitsearch.html', function(req, res){
 	fs.readFile('./html/jitsearch.html', function(error, content){
-		res.writeHead(200, { content: 'text/html' });
-		res.end(content, 'utf-8');
+		if(!error) {
+			res.writeHead(200, { content: 'text/html' });
+			res.end(content, 'utf-8');
+		}
 	});
 });
 

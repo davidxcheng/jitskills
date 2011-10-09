@@ -59,10 +59,10 @@ div.item img, div.item-content{
 	color: #b7b7b7;
 }
 
-a:link{text-decoration: none; color: lightgray;}
-a:visited{text-decoration: none; color: lightgray;}
+a:link{text-decoration: none; color: #b7b7b7;}
+a:visited{text-decoration: none; color: #b7b7b7;}
 a:hover {text-decoration: none; color: orange;}
-a:active {text-decoration: none; color: lightgray;}
+a:active {text-decoration: none; color: #b7b7b7;}
 
 span.name {
 	font-size: 17px;
@@ -78,6 +78,9 @@ div.skills {
 	color: white;
 	margin: 4px 0;
 }
+
+.cash {color: #a9a9a9;}
+.no-cash {color: lime;}
 
 /* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
    j.mp/bestclearfix */
