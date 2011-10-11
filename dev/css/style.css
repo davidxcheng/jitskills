@@ -13,7 +13,7 @@ input[type=text]{
 	border-bottom: dashed 3px white;
 	border-width: 0 0 2px 0;
 	font: normal 15px "Courier New";
-	color: magenta;
+	color: cyan;
 	background: #000000;
 }
 
@@ -30,6 +30,7 @@ div.filter{
 	background: black;
 	color: cyan;
 	padding: 10px 18px 6px 8px;
+	margin-right: 6px;
 }
 
 a.removeFilter{
@@ -47,15 +48,25 @@ a.removeFilter{
 	display: none;
 }
 
+div#items{
+	float:left;
+}
+
 div.item {
 	position: relative;
-	margin: 12px 10px 14px 0;
-	padding-bottom: 10px;
+	float: left;
+	margin: 12px 4px 10px 0;
+	padding-bottom: 2px;
 	border-bottom: solid 1px #3d3d3d; }
 
-div.item img, div.item-content{
+div.item img{
 	float: left;
 	margin-right: 8px;
+}
+
+div.item-content{
+	float: left;
+	width: 516px;
 	color: #b7b7b7;
 }
 
@@ -69,18 +80,39 @@ span.name {
 	color: lime;
 }
 
-span.contact-info{
+.contact-info{
 	font-size: 13px;
 }
 
 div.skills {
 	font-size: 17px;
 	color: white;
-	margin: 4px 0;
+	margin: 6px 0;
 }
 
-.cash {color: #a9a9a9;}
+div.utilization{
+	margin-top: 8px;
+}
+
+.cash {color: #b7b7b7;}
 .no-cash {color: lime;}
+
+line {
+	stroke: #b7b7b7;
+	stroke-width: 2px;
+}
+
+polyline{
+	stroke: lime;
+	stroke-width: 2px;
+	fill: lime;
+}
+
+.jitDate{
+	font-size: 11px;
+	text-anchor: middle;
+	fill: lime;
+}
 
 /* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
    j.mp/bestclearfix */

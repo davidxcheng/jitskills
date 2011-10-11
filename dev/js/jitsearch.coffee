@@ -20,12 +20,26 @@ $('#btnSearch').live 'click', (e) ->
 
 	$('div#items').empty();
 	$('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
+	$('.jitDate').text(jitDate.toString("ddd dd MMM"))
 
 findSkilledConsultants = (wantedSkill) ->
 	experts = (c for c in jitskills.db.consultants when c.skills.indexOf(wantedSkill) != -1)
 
 normalizeSearchTerm = (searchTerm) ->
 	skill = (skill.name for skill in jitskills.db.skills when skill.tags.indexOf(searchTerm.toLowerCase()) != -1)
+
+
+txtWantedSkills = $('#txtWantedSkills')
+jitSkillFilter = $('#jitSkillFilter')
+
+txtWantedSkills.keyup (e) ->
+	if txtWantedSkills.val().length == 0 then return
+
+	skill = normalizeSearchTerm txtWantedSkills.val()
+	if skill.length
+		jitSkillFilter.removeClass("hide").find('span').text(skill.toString())
+	else
+		jitSkillFilter.addClass("hide")
 
 txtJitDate = $('#txtJitDate')
 jitDateFilter = $('#jitDateFilter')
@@ -38,44 +52,41 @@ txtJitDate.keyup (e) ->
 		jitDateFilter.addClass("hide")
 
 getUtilizationForConsultant = (consultant, jitDate) ->
-	utilization = [0..28]
+	utilization = []
 	jitDateRange = initDateRange jitDate
 	intersectingProjects = getIntersectingProjects(consultant, jitDate)
 
-	p = 0
+	initUtilization(utilization, jitDateRange)
 
-	while p < intersectingProjects.length
-		projectStartDate = new Date(intersectingProjects[p].startdate)
-		projectEndDate = new Date(intersectingProjects[p].enddate)
+	proj = 0
+
+	while proj < intersectingProjects.length
+		projectStartDate = new Date(intersectingProjects[proj].startdate)
+		projectEndDate = new Date(intersectingProjects[proj].enddate)
 
 		day = 0
 
 		while day < jitDateRange.length
-			utilization[day] = {date: jitDateRange[day], hours: ''}
-
 			if jitDateRange[day].getDay() == 0 or jitDateRange[day].getDay() == 6
 				day++
 				continue
 
 			if jitDateRange[day].between(projectStartDate, projectEndDate)
 				utilization[day].hours = '8'
-			else
-				utilization[day].hours = '0'
 
-			#utilization[day].hours = if jitDateRange[day].between(projectStartDate, projectEndDate) then '$' else '0'
 			day++
 
-		p++
-
-	emptyUtilization(utilization) if intersectingProjects.length == 0
+		proj++
 
 	return utilization
 
-emptyUtilization = (utilization) ->
-	i = 0
-	while i < utilization.length
-		utilization[i] = 0
-		i++
+initUtilization = (utilization, jitDateRange) ->
+	day = 0
+	while day < jitDateRange.length
+		utilization.push({date: jitDateRange[day], hours: '0'})
+		if jitDateRange[day].getDay() == 0 or jitDateRange[day].getDay() == 6
+			utilization[day].hours = ''
+		day++
 
 getIntersectingProjects = (consultant, jitDate) ->
 	startDate = jitDate.clone()
