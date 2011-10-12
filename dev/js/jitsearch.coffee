@@ -21,6 +21,12 @@ $('#btnSearch').live 'click', (e) ->
 	$('div#items').empty();
 	$('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
 	$('.jitDate').text(jitDate.toString("ddd dd MMM"))
+	formatListingOfSkills()
+
+formatListingOfSkills = ->
+	for s in document.getElementsByClassName('skills')
+		do (s) ->
+			s.innerHTML = s.innerHTML.replace(/,/g, ', ')
 
 findSkilledConsultants = (wantedSkill) ->
 	experts = (c for c in jitskills.db.consultants when c.skills.indexOf(wantedSkill) != -1)
