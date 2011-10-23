@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>JIT Search</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/coffee-script/1.1.2/coffee-script.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
@@ -21,19 +23,19 @@
 			Find: <input type="text" id="txtWantedSkills" placeholder="" />
 			skills <abbr title="Just In Time">JIT</abbr> for
 			<input type="text" id="txtJitDate" />
-			<input id="btnSearch" type="button" value="GO" />
+			<!-- input id="btnSearch" type="button" value="GO" / -->
 		</div>
 		<div id="filters" class="clearfix">
-			<div id="jitSkillFilter" class="filter hide">
-				<span></span>
-				<a href="#" class="removeFilter">&nbsp;</a>
-			</div>
 			<div id="jitDateFilter" class="filter hide">
 				<span></span>
 				<a href="#" class="removeFilter">&nbsp;</a>
 			</div>
+			<div id="jitSkillFilter" class="filter hide">
+				<span></span>
+				<a href="#" class="removeFilter">&nbsp;</a>
+			</div>
 		</div>
-		<div id="items" class="clearfix"></div>
+		<div id="items"></div>
 	</div>
 
 	<script id="itemTemplate" type="text/x-jQuery-tmpl">

@@ -5,8 +5,13 @@ root.jitskills = {}
 $.getJSON '../js/db.json', (json) ->
   root.jitskills.db = json
 
+###
 $('#btnSearch').live 'click', (e) ->
 	e.preventDefault()
+	search()
+###
+
+search = () ->
 	jitDate = Date.parse(txtJitDate.val())
 	wantedSkill = normalizeSearchTerm($('#txtWantedSkills').val())
 	theSkilled = findSkilledConsultants wantedSkill.toString()
@@ -15,8 +20,7 @@ $('#btnSearch').live 'click', (e) ->
 	jitDate = jitDate or Date.today()
 
 	for skilled in theSkilled
-		do (skilled) ->
-			skilled.utilization = getUtilizationForConsultant(skilled, jitDate)
+		skilled.utilization = getUtilizationForConsultant(skilled, jitDate)
 
 	$('div#items').empty();
 	$('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
@@ -25,27 +29,27 @@ $('#btnSearch').live 'click', (e) ->
 
 formatListingOfSkills = ->
 	for s in document.getElementsByClassName('skills')
-		do (s) ->
-			s.innerHTML = s.innerHTML.replace(/,/g, ', ')
+		s.innerHTML = s.innerHTML.replace(/,/g, ', ')
 
 findSkilledConsultants = (wantedSkill) ->
 	experts = (c for c in jitskills.db.consultants when c.skills.indexOf(wantedSkill) != -1)
 
 normalizeSearchTerm = (searchTerm) ->
-	skill = (skill.name for skill in jitskills.db.skills when skill.tags.indexOf(searchTerm.toLowerCase()) != -1)
-
+	skills = (skill.name for skill in jitskills.db.skills when skill.tags.indexOf(searchTerm.toLowerCase()) != -1)
 
 txtWantedSkills = $('#txtWantedSkills')
 jitSkillFilter = $('#jitSkillFilter')
 
 txtWantedSkills.keyup (e) ->
-	if txtWantedSkills.val().length == 0 then return
+	if txtWantedSkills.val().length is 0 then return
 
-	skill = normalizeSearchTerm txtWantedSkills.val()
-	if skill.length
+	skills = normalizeSearchTerm txtWantedSkills.val()
+	if skills.length
 		jitSkillFilter.removeClass("hide").find('span').text(skill.toString())
 	else
 		jitSkillFilter.addClass("hide")
+
+	search()
 
 txtJitDate = $('#txtJitDate')
 jitDateFilter = $('#jitDateFilter')
@@ -53,9 +57,11 @@ jitDateFilter = $('#jitDateFilter')
 txtJitDate.keyup (e) ->
 	date = Date.parse(txtJitDate.val())
 	if date != null
-		jitDateFilter.removeClass("hide").find('span').text(date.toString "dddd d MMM yyyy")
+		jitDateFilter.removeClass("hide").find('span').text(date.toString "ddd d MMM yyyy")
 	else
 		jitDateFilter.addClass("hide")
+
+	search()
 
 getUtilizationForConsultant = (consultant, jitDate) ->
 	utilization = []
