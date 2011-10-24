@@ -11,13 +11,12 @@ $('#btnSearch').live 'click', (e) ->
 	search()
 ###
 
-search = () ->
-	jitDate = Date.parse(txtJitDate.val())
-	wantedSkill = normalizeSearchTerm($('#txtWantedSkills').val())
-	theSkilled = findSkilledConsultants wantedSkill.toString()
+search = (clues) ->
+	clues = clues || {}
+	wantedSkills = clues.wantedSkills || []
+	jitDate = clues.jitDate or Date.today()
 
-	# Default to today if no date is specified
-	jitDate = jitDate or Date.today()
+	theSkilled = findSkilledConsultants wantedSkills
 
 	for skilled in theSkilled
 		skilled.utilization = getUtilizationForConsultant(skilled, jitDate)
@@ -31,25 +30,27 @@ formatListingOfSkills = ->
 	for s in document.getElementsByClassName('skills')
 		s.innerHTML = s.innerHTML.replace(/,/g, ', ')
 
-findSkilledConsultants = (wantedSkill) ->
-	experts = (c for c in jitskills.db.consultants when c.skills.indexOf(wantedSkill) != -1)
+findSkilledConsultants = (wantedSkills) ->
+	experts = jitskills.db.consultants
+	for skill in wantedSkills
+		experts = (c for c in experts when c.skills.indexOf(skill) != -1)
+
+	return experts
 
 normalizeSearchTerm = (searchTerm) ->
 	skills = (skill.name for skill in jitskills.db.skills when skill.tags.indexOf(searchTerm.toLowerCase()) != -1)
 
 txtWantedSkills = $('#txtWantedSkills')
-jitSkillFilter = $('#jitSkillFilter')
+jitSkillFilter = $('#jitSkillFilters')
 
 txtWantedSkills.keyup (e) ->
 	if txtWantedSkills.val().length is 0 then return
+	skills = normalizeSearchTerm txtWantedSkills.val() || []
 
-	skills = normalizeSearchTerm txtWantedSkills.val()
-	if skills.length
-		jitSkillFilter.removeClass("hide").find('span').text(skill.toString())
-	else
-		jitSkillFilter.addClass("hide")
+	for skill in skills
+		jitSkillFilter.append("<span data-skill='#{ skill }'>#{ skill } <a href='#' class='removeFilter'>&nbsp;</a></span>")
 
-	search()
+	search({wantedSkills: skills }) if skills.length isnt 0
 
 txtJitDate = $('#txtJitDate')
 jitDateFilter = $('#jitDateFilter')
@@ -61,7 +62,7 @@ txtJitDate.keyup (e) ->
 	else
 		jitDateFilter.addClass("hide")
 
-	search()
+	search({jitDate: date})
 
 getUtilizationForConsultant = (consultant, jitDate) ->
 	utilization = []

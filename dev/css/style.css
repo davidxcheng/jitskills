@@ -21,7 +21,7 @@ input[type=text]{
 
 div#filters {margin: 14px 0; padding: 10px 0;}
 
-div.filter{
+div.filter, div#jitSkillFilters span{
 	float:left;
 	position: relative;
 	font-size: 13px;
