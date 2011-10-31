@@ -5,11 +5,11 @@ root.jitskills = {}
 $.getJSON '../js/db.json', (json) ->
   root.jitskills.db = json
 
-###
-$('#btnSearch').live 'click', (e) ->
-	e.preventDefault()
-	search()
-###
+$(document).ready (jitskills) ->
+	sidebar = $('#sidebar')
+
+	for dep in jitskills.db.departments
+		sidebar.append(dep)
 
 search = (clues) ->
 	clues = clues || {}
@@ -52,17 +52,26 @@ txtWantedSkills.keyup (e) ->
 
 	search({wantedSkills: skills }) if skills.length isnt 0
 
+getWantedSkillsFromDocument = () ->
+	filterSkills = []
+	$("#jitSkillFilters span").each (index) ->
+  		filterSkills.push $(this).data("skill")
+
+	return filterSkills
+
+$('a.removeFilter').live "click", (e) ->
+	$(e.currentTarget.parentNode).fadeOut "fast", () ->
+		$(this).remove()
+		search({wantedSkills: getWantedSkillsFromDocument()})
+
 txtJitDate = $('#txtJitDate')
 jitDateFilter = $('#jitDateFilter')
 
 txtJitDate.keyup (e) ->
-	date = Date.parse(txtJitDate.val())
-	if date != null
-		jitDateFilter.removeClass("hide").find('span').text(date.toString "ddd d MMM yyyy")
-	else
-		jitDateFilter.addClass("hide")
+	date = Date.parse(txtJitDate.val()) or Date.today()
+	jitDateFilter.removeClass("hide").find('span').text(date.toString "ddd d MMM yyyy")
 
-	search({jitDate: date})
+	search({jitDate: date, wantedSkills: getWantedSkillsFromDocument()})
 
 getUtilizationForConsultant = (consultant, jitDate) ->
 	utilization = []

@@ -107,5 +107,9 @@
 		"Lead Developer",
 		"Software Architect",
 		"Scrum Master"
+	],
+	"departments": [
+		"MicroSoft",
+		"Enterprise Web"
 	]
 }

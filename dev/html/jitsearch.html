@@ -18,12 +18,12 @@
 	</script>
 </head>
 <body>
+<div id="wrapper">
 	<div id="container">
 		<div id="search">
 			Find: <input type="text" id="txtWantedSkills" placeholder="" />
 			skills <abbr title="Just In Time">JIT</abbr> for
 			<input type="text" id="txtJitDate" />
-			<!-- input id="btnSearch" type="button" value="GO" / -->
 		</div>
 		<div id="filters" class="clearfix">
 			<div id="jitDateFilter" class="filter hide">
@@ -34,6 +34,10 @@
 		</div>
 		<div id="items"></div>
 	</div>
+	<div id="sidebar">
+
+	</div>
+</div>
 
 	<script id="itemTemplate" type="text/x-jQuery-tmpl">
         <div class="item clearfix">
