@@ -1,0 +1,6 @@
+(($, db) ->
+
+	return jitskills {
+
+	}
+) jQuery,

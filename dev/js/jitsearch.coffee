@@ -1,22 +1,40 @@
 root = exports ? this
 
-root.jitskills = {}
+$(document).ready () ->
+	root.jitskills = {}
 
-$.getJSON '../js/db.json', (json) ->
-  root.jitskills.db = json
+	$.getJSON '../js/db.json', (json) ->
+		root.jitskills.db = json
 
-$(document).ready (jitskills) ->
-	sidebar = $('#sidebar')
+		for dep in root.jitskills.db.departments
+			$('#departments').append("<span class='filter-button'>#{dep.name}</span>")
 
-	for dep in jitskills.db.departments
-		sidebar.append(dep)
+	$("span.filter-button").live "click", (e) ->
+		department = this.innerHTML
+		departmentFilters = getDepartmentsFromDocument()
+
+		if department in departmentFilters
+			$teams = $("#teams")
+			$("#departments").slideUp "fast", () ->
+				for teams in (dep.teams for dep in root.jitskills.db.departments when dep.name is department)
+					$teams.append("<span class='filter-button'>#{team}</span>") for team in teams
+
+				$teams.slideDown("fast");
+		else
+			$("#organizationFilter").append("<span class='filter' data-department='#{ department }'>#{ department } <a href='#' class='removeFilter'>&nbsp;</a></span>")
+
+			search
+				departments: getDepartmentsFromDocument()
+				wantedSkills: getWantedSkillsFromDocument()
 
 search = (clues) ->
 	clues = clues || {}
 	wantedSkills = clues.wantedSkills || []
 	jitDate = clues.jitDate or Date.today()
+	departments = clues.departments || []
 
-	theSkilled = findSkilledConsultants wantedSkills
+	consultants = filterByDepartments departments
+	theSkilled = findSkilledConsultants consultants, wantedSkills
 
 	for skilled in theSkilled
 		skilled.utilization = getUtilizationForConsultant(skilled, jitDate)
@@ -26,16 +44,19 @@ search = (clues) ->
 	$('.jitDate').text(jitDate.toString("ddd dd MMM"))
 	formatListingOfSkills()
 
+filterByDepartments = (departments) ->
+	return jitskills.db.consultants if departments.length is 0
+	c for c in jitskills.db.consultants when c.department in departments
+
 formatListingOfSkills = ->
 	for s in document.getElementsByClassName('skills')
 		s.innerHTML = s.innerHTML.replace(/,/g, ', ')
 
-findSkilledConsultants = (wantedSkills) ->
-	experts = jitskills.db.consultants
+findSkilledConsultants = (consultants, wantedSkills) ->
 	for skill in wantedSkills
-		experts = (c for c in experts when c.skills.indexOf(skill) != -1)
+		consultants = (c for c in consultants when c.skills.indexOf(skill) != -1)
 
-	return experts
+	return consultants
 
 normalizeSearchTerm = (searchTerm) ->
 	skills = (skill.name for skill in jitskills.db.skills when skill.tags.indexOf(searchTerm.toLowerCase()) != -1)
@@ -48,7 +69,7 @@ txtWantedSkills.keyup (e) ->
 	skills = normalizeSearchTerm txtWantedSkills.val() || []
 
 	for skill in skills
-		jitSkillFilter.append("<span data-skill='#{ skill }'>#{ skill } <a href='#' class='removeFilter'>&nbsp;</a></span>")
+		jitSkillFilter.append("<span class='filter' data-skill='#{ skill }'>#{ skill } <a href='#' class='removeFilter'>&nbsp;</a></span>")
 
 	search({wantedSkills: skills }) if skills.length isnt 0
 
@@ -59,19 +80,31 @@ getWantedSkillsFromDocument = () ->
 
 	return filterSkills
 
+getDepartmentsFromDocument = () ->
+	departments = []
+	$("#organizationFilter span").each (index) ->
+		departments.push $(this).data("department")
+
+	return departments
+
 $('a.removeFilter').live "click", (e) ->
 	$(e.currentTarget.parentNode).fadeOut "fast", () ->
 		$(this).remove()
-		search({wantedSkills: getWantedSkillsFromDocument()})
+		search
+			wantedSkills: getWantedSkillsFromDocument()
+			departments: getDepartmentsFromDocument()
 
 txtJitDate = $('#txtJitDate')
 jitDateFilter = $('#jitDateFilter')
 
 txtJitDate.keyup (e) ->
 	date = Date.parse(txtJitDate.val()) or Date.today()
-	jitDateFilter.removeClass("hide").find('span').text(date.toString "ddd d MMM yyyy")
+	jitDateFilter.empty().append("<span class='filter'>#{date.toString 'ddd d MMM yyyy'}<a href='#' class='removeFilter'>&nbsp;</a></span>")
 
-	search({jitDate: date, wantedSkills: getWantedSkillsFromDocument()})
+	search
+		jitDate: date
+		wantedSkills: getWantedSkillsFromDocument()
+		departments: getDepartmentsFromDocument()
 
 getUtilizationForConsultant = (consultant, jitDate) ->
 	utilization = []

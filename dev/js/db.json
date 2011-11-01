@@ -14,6 +14,7 @@
 					"CoffeeScript",
 					".NET"
 				],
+				"department": "Enterprise Web",
 				"roles": [
 					"Software Archtiect",
 					"Lead Developer",
@@ -42,6 +43,7 @@
 						"CSS",
 						"mongoDB"
 				],
+				"department": "MicroSoft",
 				"roles": [
 					"Developer",
 					"CEO"
@@ -70,6 +72,7 @@
 						"mongoDB",
 						"Android"
 				],
+				"department": "MicroSoft",
 				"roles": [
 					"Software Architect",
 					"Scrum Master",
@@ -109,7 +112,22 @@
 		"Scrum Master"
 	],
 	"departments": [
-		"MicroSoft",
-		"Enterprise Web"
+		{
+			"name": "MicroSoft",
+			"teams": ["SharePoint", "Custom Development"]
+		},
+		{
+			"name": "Enterprise Web",
+			"teams": []
+		},
+		{
+			"name": "SAP",
+			"teams": []
+
+		},
+		{
+			"name": "MGMNT",
+			"teams": []
+		}
 	]
 }
