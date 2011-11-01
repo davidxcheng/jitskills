@@ -26,7 +26,7 @@
       <file leaf-file-name="jitsearch.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="33" selection-start="1339" selection-end="1339" vertical-scroll-proportion="-17.208334">
+            <state line="36" column="27" selection-start="1276" selection-end="1276" vertical-scroll-proportion="-17.833334">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="28" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0">
+            <state line="54" column="1" selection-start="852" selection-end="852" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="jitsearch.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.2532274">
+            <state line="17" column="66" selection-start="513" selection-end="513" vertical-scroll-proportion="0.2532274">
               <folding />
             </state>
           </provider>
@@ -86,9 +86,9 @@
         <option value="$PROJECT_DIR$/css/mobile.css" />
         <option value="$PROJECT_DIR$/js/test.coffee" />
         <option value="$PROJECT_DIR$/js/jitskills.coffee" />
-        <option value="$PROJECT_DIR$/html/jitsearch.html" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/db.json" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/html/jitsearch.html" />
         <option value="$PROJECT_DIR$/js/jitsearch.coffee" />
       </list>
     </option>
@@ -329,20 +329,6 @@
         <state line="12" column="9" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="33" selection-start="1339" selection-end="1339" vertical-scroll-proportion="-17.208334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="28" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/jitskills.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="9" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
@@ -357,9 +343,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="1" selection-start="852" selection-end="852" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="27" selection-start="1276" selection-end="1276" vertical-scroll-proportion="-17.833334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.2532274">
+        <state line="17" column="66" selection-start="513" selection-end="513" vertical-scroll-proportion="0.2532274">
           <folding />
         </state>
       </provider>

@@ -14,12 +14,14 @@ $(document).ready () ->
 		departmentFilters = getDepartmentsFromDocument()
 
 		if department in departmentFilters
-			$teams = $("#teams")
-			$("#departments").slideUp "fast", () ->
+			$teams = $("#teams").fadeOut()
+			$("#organization h3").fadeOut().html("Teams").fadeIn()
+
+			$("#departments").slideUp "normal", () ->
 				for teams in (dep.teams for dep in root.jitskills.db.departments when dep.name is department)
 					$teams.append("<span class='filter-button'>#{team}</span>") for team in teams
 
-				$teams.slideDown("fast");
+				$teams.slideDown("normal");
 		else
 			$("#organizationFilter").append("<span class='filter' data-department='#{ department }'>#{ department } <a href='#' class='removeFilter'>&nbsp;</a></span>")
 

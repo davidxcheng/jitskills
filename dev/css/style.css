@@ -54,10 +54,6 @@ div#filters {margin: 14px 0 0; padding: 10px 0;}
 	float: left;
 }
 
-div#teams span.filter-button{
-	color: orange;
-}
-
 span.filter-button {
 	font-size: 13px;
 	border: solid 2px #3d3d3d;
