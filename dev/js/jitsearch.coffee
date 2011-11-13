@@ -38,15 +38,45 @@ search = (clues) ->
 
   consultants = filterByDepartments departments
   theSkilled = findSkilledConsultants consultants, wantedSkills
-  jitDateRange = initDateRange jitDate
+  #jitDateRange = initDateRange jitDate
 
   for skilled in theSkilled
-    skilled.utilization = getUtilizationForConsultant(skilled, jitDate, jitDateRange)
+    skilled.utilization = initDateRange jitDate
+    skilled.utilization.days = getDayByDayUtilizationOfConsultant(skilled, jitDate)
 
   $('div#items').empty();
   $('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
   $('.jitDate').text(jitDate.toString("ddd dd MMM"))
   formatListingOfSkills()
+
+# Blah
+getDayByDayUtilizationOfConsultant = (consultant, jitDate) ->
+  dates = consultant.utilization.dates
+  utilization = []
+  intersectingProjects = getIntersectingProjects(consultant, jitDate)
+  initUtilization(utilization, dates)
+
+  proj = 0
+
+  while proj < intersectingProjects.length
+    projectStartDate = new Date(intersectingProjects[proj].startdate)
+    projectEndDate = new Date(intersectingProjects[proj].enddate)
+
+    date = 0
+
+    while date < dates.length
+      if dates[date].getDay() == 0 or dates[date].getDay() == 6
+        date++
+        continue
+
+      if dates[date].between(projectStartDate, projectEndDate)
+        utilization[date].hours = '8'
+
+      date++
+
+    proj++
+
+  return utilization
 
 filterByDepartments = (departments) ->
 	return jitskills.db.consultants if departments.length is 0
@@ -111,39 +141,11 @@ txtJitDate.keyup (e) ->
 		wantedSkills: getWantedSkillsFromDocument()
 		departments: getDepartmentsFromDocument()
 
-getUtilizationForConsultant = (consultant, jitDate, jitDateRange) ->
-	utilization = []
-	intersectingProjects = getIntersectingProjects(consultant, jitDate)
-
-	initUtilization(utilization, jitDateRange)
-
-	proj = 0
-
-	while proj < intersectingProjects.length
-		projectStartDate = new Date(intersectingProjects[proj].startdate)
-		projectEndDate = new Date(intersectingProjects[proj].enddate)
-
-		day = 0
-
-		while day < jitDateRange.length
-			if jitDateRange[day].getDay() == 0 or jitDateRange[day].getDay() == 6
-				day++
-				continue
-
-			if jitDateRange[day].between(projectStartDate, projectEndDate)
-				utilization[day].hours = '8'
-
-			day++
-
-		proj++
-
-	return utilization
-
-initUtilization = (utilization, jitDateRange) ->
+initUtilization = (utilization, dates) ->
 	day = 0
-	while day < jitDateRange.length
-		utilization.push({date: jitDateRange[day], hours: '0'})
-		if jitDateRange[day].getDay() == 0 or jitDateRange[day].getDay() == 6
+	while day < dates.length
+		utilization.push({date: dates[day], hours: '0'})
+		if dates[day].getDay() == 0 or dates[day].getDay() == 6
 			utilization[day].hours = ''
 		day++
 
@@ -157,14 +159,46 @@ getIntersectingProjects = (consultant, jitDate) ->
 	intersectors = (project for project in consultant.projects when (new Date(project.startdate).isBefore(endDate) and new Date(project.enddate).isAfter(startDate)))
 
 initDateRange = (jitDate) ->
-	dateRange = []
-	startDate = jitDate.clone()
-	startDate.add(-7).days()
-	i = 0
+  noOfDaysInRange = 29
 
-	while i < 29
-		dateRange.push(startDate.clone())
-		startDate.add(1).days()
-		i++
+  dateRange =
+    dates: []
+    days: []
+    weeks: []
+    months: []
 
-	return dateRange
+  currentDate = jitDate.clone()
+  # Start the range x days before the requested date..
+  currentDate.add(-7).days()
+  i = 0
+  week_daysLeftInRange = noOfDaysInRange
+  month_daysLeftInRange = noOfDaysInRange
+
+  # ..and include y days in the range.
+  while i < noOfDaysInRange
+    dateRange.dates.push(currentDate.clone())
+
+    unless dateRange.weeks.some((element) ->
+      element.name is currentDate.getWeek()
+    )
+      dateRange.weeks.push
+        name: currentDate.getWeek()
+        firstDayInRange: i
+        length: if week_daysLeftInRange < 7 then week_daysLeftInRange else 7 - (if currentDate.getDay() is 0 then 6 else currentDate.getDay() - 1)
+      week_daysLeftInRange -= dateRange.weeks.slice(-1)[0].length
+
+    unless dateRange.months.some((element) ->
+      element.name is currentDate.toString "MMMM"
+    )
+      daysLeftInMonth = Date.getDaysInMonth(currentDate.getYear(), currentDate.getMonth()) - (+currentDate.toString("dd") - 1)
+
+      dateRange.months.push
+        name: currentDate.toString "MMMM"
+        firstDayInRange: i
+        length: if month_daysLeftInRange < daysLeftInMonth then month_daysLeftInRange else daysLeftInMonth
+      month_daysLeftInRange -= dateRange.months.slice(-1)[0].length
+
+    currentDate.add(1).days()
+    i++
+
+  return dateRange

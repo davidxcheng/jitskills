@@ -23,19 +23,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jitsearch.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="jitsearch.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="39" selection-start="2605" selection-end="2605" vertical-scroll-proportion="-38.208332">
+            <state line="39" column="32" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.29801896">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jitsearch.coffee" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="jitsearch.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="51" selection-start="3734" selection-end="3734" vertical-scroll-proportion="0.41787004">
+            <state line="192" column="123" selection-start="6068" selection-end="6068" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jitskills.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/jitskills.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="9" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -53,7 +62,7 @@
       <file leaf-file-name="db.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/db.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="21" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
+            <state line="58" column="13" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -79,16 +88,16 @@
         <option value="$PROJECT_DIR$/js/jitskills.coffee" />
         <option value="$PROJECT_DIR$/js/db.json" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/html/jitsearch.html" />
         <option value="$PROJECT_DIR$/js/jitsearch.coffee" />
+        <option value="$PROJECT_DIR$/html/jitsearch.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="43" />
-    <option name="y" value="53" />
-    <option name="width" value="1323" />
-    <option name="height" value="1270" />
+    <option name="y" value="22" />
+    <option name="width" value="1320" />
+    <option name="height" value="1389" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -258,13 +267,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="43" y="53" width="1323" height="1270" extended-state="0" />
+    <frame x="43" y="22" width="1320" height="1389" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18461539" sideWeight="0.99130434" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18504241" sideWeight="0.99762285" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -351,19 +360,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/db.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="21" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="39" selection-start="2605" selection-end="2605" vertical-scroll-proportion="-38.208332">
+        <state line="58" column="13" selection-start="1183" selection-end="1183" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="51" selection-start="3734" selection-end="3734" vertical-scroll-proportion="0.41787004">
+        <state line="192" column="123" selection-start="6068" selection-end="6068" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="32" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.29801896">
           <folding />
         </state>
       </provider>
