@@ -36,6 +36,9 @@ input[type=text]{
 	color: cyan;
 	background: #000000;
 }
+:focus{
+	outline: none;
+}
 
 #txtJitDate {width: 130px;}
 

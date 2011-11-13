@@ -15,7 +15,8 @@ $(document).ready () ->
 
 		if department in departmentFilters
 			$teams = $("#teams").fadeOut()
-			$("#organization h3").fadeOut().html("Teams").fadeIn()
+			$("#organization h3").fadeOut "normal", () ->
+				$(this).html("Teams").fadeIn()
 
 			$("#departments").slideUp "normal", () ->
 				for teams in (dep.teams for dep in root.jitskills.db.departments when dep.name is department)
@@ -30,21 +31,22 @@ $(document).ready () ->
 				wantedSkills: getWantedSkillsFromDocument()
 
 search = (clues) ->
-	clues = clues || {}
-	wantedSkills = clues.wantedSkills || []
-	jitDate = clues.jitDate or Date.today()
-	departments = clues.departments || []
+  clues = clues || {}
+  wantedSkills = clues.wantedSkills || []
+  jitDate = clues.jitDate or Date.today()
+  departments = clues.departments || []
 
-	consultants = filterByDepartments departments
-	theSkilled = findSkilledConsultants consultants, wantedSkills
+  consultants = filterByDepartments departments
+  theSkilled = findSkilledConsultants consultants, wantedSkills
+  jitDateRange = initDateRange jitDate
 
-	for skilled in theSkilled
-		skilled.utilization = getUtilizationForConsultant(skilled, jitDate)
+  for skilled in theSkilled
+    skilled.utilization = getUtilizationForConsultant(skilled, jitDate, jitDateRange)
 
-	$('div#items').empty();
-	$('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
-	$('.jitDate').text(jitDate.toString("ddd dd MMM"))
-	formatListingOfSkills()
+  $('div#items').empty();
+  $('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
+  $('.jitDate').text(jitDate.toString("ddd dd MMM"))
+  formatListingOfSkills()
 
 filterByDepartments = (departments) ->
 	return jitskills.db.consultants if departments.length is 0
@@ -68,6 +70,7 @@ jitSkillFilter = $('#jitSkillFilters')
 
 txtWantedSkills.keyup (e) ->
 	if txtWantedSkills.val().length is 0 then return
+
 	skills = normalizeSearchTerm txtWantedSkills.val() || []
 
 	for skill in skills
@@ -108,9 +111,8 @@ txtJitDate.keyup (e) ->
 		wantedSkills: getWantedSkillsFromDocument()
 		departments: getDepartmentsFromDocument()
 
-getUtilizationForConsultant = (consultant, jitDate) ->
+getUtilizationForConsultant = (consultant, jitDate, jitDateRange) ->
 	utilization = []
-	jitDateRange = initDateRange jitDate
 	intersectingProjects = getIntersectingProjects(consultant, jitDate)
 
 	initUtilization(utilization, jitDateRange)
