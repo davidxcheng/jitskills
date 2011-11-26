@@ -149,6 +149,30 @@ polyline{
 	fill: lime;
 }
 
+.weeks span {
+    text-align: center;
+    display: inline-block;
+    font-size: 11px;
+    float:left;
+    border-left: solid 1px #b7b7b7;
+}
+
+.weeks span:first-child {
+    border-left: none;
+}
+
+.months span {
+    border-left: 1px solid #b7b7b7;
+    text-align: center;
+    display: inline-block;
+    font-size: 11px;
+    float: left;
+}
+
+.months span:first-child {
+    border-left: none;
+}
+
 /* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
    j.mp/bestclearfix */
 .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
@@ -162,4 +186,21 @@ polyline{
 
 @media only screen and (min-width: 768px){
 
+}
+
+#que:after{
+    color: lime;
+    content: '\00f8ff';height: 20px;
+}
+
+#que:hover{
+    -webkit-transition: all 1s ease-in-out;
+}
+
+.blah{
+    border: solid 1px magenta;
+}
+
+.transur{
+    transform
 }

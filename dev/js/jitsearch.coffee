@@ -38,7 +38,6 @@ search = (clues) ->
 
   consultants = filterByDepartments departments
   theSkilled = findSkilledConsultants consultants, wantedSkills
-  #jitDateRange = initDateRange jitDate
 
   for skilled in theSkilled
     skilled.utilization = initDateRange jitDate
@@ -108,20 +107,6 @@ txtWantedSkills.keyup (e) ->
 
 	search({wantedSkills: skills }) if skills.length isnt 0
 
-getWantedSkillsFromDocument = () ->
-	filterSkills = []
-	$("#jitSkillFilters span").each (index) ->
-  		filterSkills.push $(this).data("skill")
-
-	return filterSkills
-
-getDepartmentsFromDocument = () ->
-	departments = []
-	$("#organizationFilter span").each (index) ->
-		departments.push $(this).data("department")
-
-	return departments
-
 $('a.removeFilter').live "click", (e) ->
 	$(e.currentTarget.parentNode).fadeOut "fast", () ->
 		$(this).remove()
@@ -140,6 +125,20 @@ txtJitDate.keyup (e) ->
 		jitDate: date
 		wantedSkills: getWantedSkillsFromDocument()
 		departments: getDepartmentsFromDocument()
+
+getWantedSkillsFromDocument = () ->
+	filterSkills = []
+	$("#jitSkillFilters span").each (index) ->
+  		filterSkills.push $(this).data("skill")
+
+	return filterSkills
+
+getDepartmentsFromDocument = () ->
+	departments = []
+	$("#organizationFilter span").each (index) ->
+		departments.push $(this).data("department")
+
+	return departments
 
 initUtilization = (utilization, dates) ->
 	day = 0

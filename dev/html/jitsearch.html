@@ -24,7 +24,7 @@
 <div id="wrapper" class="clearfix">
 	<div id="container">
 		<div id="search">
-			Find: <input type="text" id="txtWantedSkills" placeholder="" />
+			Find: <input type="text" id="txtWantedSkills" placeholder="" accesskey="J" />
 			skills <abbr title="Just In Time">JIT</abbr> for
 			<input type="text" id="txtJitDate" />
 		</div>
@@ -43,6 +43,8 @@
 		</div>
 		<div id="marketplace">
 			<h3>Marketplace</h3>
+
+			<div id="que">Blah</div>
 		</div>
 	</div>
 </div>
@@ -69,19 +71,22 @@
 						{{/if}}
 				{{/each}}
 					<svg width="515" height="24">
-						<line x1="0" y1="0"
-							  x2="515" y2="0" />
+						<line x1="0" y1="5"
+							  x2="515" y2="5" />
+						<line class="w1"
+							  x1="60" y1="0"
+							  x2="60" y2="9" />
 						<polyline points="128,1 131,5 134,1" />
 						<text class="jitDate" x="131" y="17"></text>
 					</svg>
-					<div>
+					<div class="weeks">
 					{{each utilization.weeks}}
-							<span>${$value.name}</span>
+							<span style='width: ${$value.length * 17.6}px;'>${$value.name}</span>
 					{{/each}}
 					</div>
-					<div>
+					<div class="months">
 					{{each utilization.months}}
-						<span>${$value.name}</span>
+						<span style='width: ${$value.length * 17.7}px;'>${$value.name}</span>
 					{{/each}}
 					</div>
 				</div>
