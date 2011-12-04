@@ -14,4 +14,13 @@ app.get('/jitsearch.html', function(req, res){
 	});
 });
 
+app.get('/trial.html', function(req, res){
+    fs.readFile('./html/trial.html', function(error, content){
+        if(!error){
+            res.writeHead(200, { content: 'text/html' });
+            res.end(content, 'utf-8');
+        }
+    });
+});
+
 app.listen(8000);

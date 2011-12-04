@@ -1,34 +1,37 @@
 root = exports ? this
 
 $(document).ready () ->
-	root.jitskills = {}
+  root.jitskills = {}
 
-	$.getJSON '../js/db.json', (json) ->
-		root.jitskills.db = json
+  $.getJSON '../js/db.json', (json) ->
+    root.jitskills.db = json
 
-		for dep in root.jitskills.db.departments
-			$('#departments').append("<span class='filter-button'>#{dep.name}</span>")
+    for dep in root.jitskills.db.departments
+      $('#departments').append("<span class='filter-button'>#{dep.name}</span>")
 
-	$("span.filter-button").live "click", (e) ->
-		department = this.innerHTML
-		departmentFilters = getDepartmentsFromDocument()
+    haystack = (skill.name for skill in root.jitskills.db.skills)
+    $('#txtWantedSkills').focus()
 
-		if department in departmentFilters
-			$teams = $("#teams").fadeOut()
-			$("#organization h3").fadeOut "normal", () ->
-				$(this).html("Teams").fadeIn()
+  $("span.filter-button").live "click", (e) ->
+    department = this.innerHTML
+    departmentFilters = getDepartmentsFromDocument()
 
-			$("#departments").slideUp "normal", () ->
-				for teams in (dep.teams for dep in root.jitskills.db.departments when dep.name is department)
-					$teams.append("<span class='filter-button'>#{team}</span>") for team in teams
+    if department in departmentFilters
+      $teams = $("#teams").fadeOut()
+      $("#organization h3").fadeOut "normal", () ->
+        $(this).html("Teams").fadeIn()
 
-				$teams.slideDown("normal");
-		else
-			$("#organizationFilter").append("<span class='filter' data-department='#{ department }'>#{ department } <a href='#' class='removeFilter'>&nbsp;</a></span>")
+      $("#departments").slideUp "normal", () ->
+        for teams in (dep.teams for dep in root.jitskills.db.departments when dep.name is department)
+          $teams.append("<span class='filter-button'>#{team}</span>") for team in teams
 
-			search
-				departments: getDepartmentsFromDocument()
-				wantedSkills: getWantedSkillsFromDocument()
+        $teams.slideDown("normal");
+    else
+      $("#organizationFilter").append("<span class='filter' data-department='#{ department }'>#{ department } <a href='#' class='removeFilter'>&nbsp;</a></span>")
+
+      search
+        departments: getDepartmentsFromDocument()
+        wantedSkills: getWantedSkillsFromDocument()
 
 search = (clues) ->
   clues = clues || {}
@@ -48,7 +51,7 @@ search = (clues) ->
   $('.jitDate').text(jitDate.toString("ddd dd MMM"))
   formatListingOfSkills()
 
-# Blah
+# TODO: Move to separate file
 getDayByDayUtilizationOfConsultant = (consultant, jitDate) ->
   dates = consultant.utilization.dates
   utilization = []
@@ -98,14 +101,16 @@ txtWantedSkills = $('#txtWantedSkills')
 jitSkillFilter = $('#jitSkillFilters')
 
 txtWantedSkills.keyup (e) ->
-	if txtWantedSkills.val().length is 0 then return
+  if txtWantedSkills.val().length is 0 then return
 
-	skills = normalizeSearchTerm txtWantedSkills.val() || []
+  skills = normalizeSearchTerm txtWantedSkills.val() || []
+  if not skills.length then return
 
-	for skill in skills
-		jitSkillFilter.append("<span class='filter' data-skill='#{ skill }'>#{ skill } <a href='#' class='removeFilter'>&nbsp;</a></span>")
+  for skill in skills
+    jitSkillFilter.append("<span class='filter' data-skill='#{ skill }'>#{ skill } <a href='#' class='removeFilter'>&nbsp;</a></span>")
 
-	search({wantedSkills: skills }) if skills.length isnt 0
+  allWantedSkills = skills.concat getWantedSkillsFromDocument()
+  search({wantedSkills: allWantedSkills }) if allWantedSkills.length isnt 0
 
 $('a.removeFilter').live "click", (e) ->
 	$(e.currentTarget.parentNode).fadeOut "fast", () ->
@@ -127,11 +132,11 @@ txtJitDate.keyup (e) ->
 		departments: getDepartmentsFromDocument()
 
 getWantedSkillsFromDocument = () ->
-	filterSkills = []
-	$("#jitSkillFilters span").each (index) ->
-  		filterSkills.push $(this).data("skill")
+  filterSkills = []
+  $("#jitSkillFilters span.filter").each (index) ->
+      filterSkills.push $(this).data("skill")
 
-	return filterSkills
+  return filterSkills
 
 getDepartmentsFromDocument = () ->
 	departments = []
@@ -158,7 +163,7 @@ getIntersectingProjects = (consultant, jitDate) ->
 	intersectors = (project for project in consultant.projects when (new Date(project.startdate).isBefore(endDate) and new Date(project.enddate).isAfter(startDate)))
 
 initDateRange = (jitDate) ->
-  noOfDaysInRange = 29
+  noOfDaysInRange = 27
 
   dateRange =
     dates: []
@@ -168,7 +173,7 @@ initDateRange = (jitDate) ->
 
   currentDate = jitDate.clone()
   # Start the range x days before the requested date..
-  currentDate.add(-7).days()
+  currentDate.add(-4).days()
   i = 0
   week_daysLeftInRange = noOfDaysInRange
   month_daysLeftInRange = noOfDaysInRange

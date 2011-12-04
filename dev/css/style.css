@@ -126,10 +126,11 @@ div.skills {
 }
 
 div.utilization{
-	margin-top: 8px;
+	margin-top: 0px;
+    color: #b7b7b7;
 }
 
-.cash {color: #b7b7b7;}
+.cash {color: white;}
 .no-cash {color: lime;}
 
 line {
@@ -149,12 +150,31 @@ polyline{
 	fill: lime;
 }
 
+.dates span {
+    width: 19px;
+    display: inline-block;
+    float: left;
+    text-align: center;
+}
+
+.days span {
+    width: 19px;
+    display: inline-block;
+    float: left;
+    font-size: 11px;
+    text-align: center;
+}
+
+.days span:nth-child(5){
+    color: cyan;
+}
+
 .weeks span {
     text-align: center;
     display: inline-block;
     font-size: 11px;
     float:left;
-    border-left: solid 1px #b7b7b7;
+    /*border-left: solid 1px #b7b7b7;*/
 }
 
 .weeks span:first-child {
@@ -162,7 +182,7 @@ polyline{
 }
 
 .months span {
-    border-left: 1px solid #b7b7b7;
+    /*border-left: 1px solid #b7b7b7;*/
     text-align: center;
     display: inline-block;
     font-size: 11px;
@@ -199,8 +219,4 @@ polyline{
 
 .blah{
     border: solid 1px magenta;
-}
-
-.transur{
-    transform
 }
