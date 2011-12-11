@@ -44,7 +44,7 @@ input[type=text]{
 
 div#filters {margin: 14px 0 0; padding: 10px 0;}
 
-.filter{
+.filter, .ghost-filter{
 	position: relative;
 	font-size: 13px;
 	border: solid 2px #3d3d3d;
@@ -55,6 +55,10 @@ div#filters {margin: 14px 0 0; padding: 10px 0;}
 	margin: 0px 6px 6px 0;
 	white-space: nowrap;
 	float: left;
+}
+
+.ghost-filter {
+    border-style: dashed;
 }
 
 span.filter-button {

@@ -54,12 +54,12 @@
 				<div class="skills">${skills}</div>
 				<div class="utilization">
 					<div class="weeks clearfix">
-						{{each utilization.weeks}}
-								<span style='width: ${$value.length * 19}px;'>${$value.name}</span>
-						{{/each}}
+					{{each utilization.weeks}}
+							<span style='width: ${$value.length * 19}px;'>${$value.name}</span>
+					{{/each}}
 					</div>
 					<div class="dates clearfix">
-				{{each utilization.days}}
+					{{each utilization.days}}
 						{{if $value.hours == '0'}}
 							<span class="no-cash" title='${$value.date.toString("ddd dd MMM")}'>${$value.hours}</span>
 						{{/if}}
@@ -69,7 +69,7 @@
 						{{if $value.hours > 0}}
 							<span class="cash" title='${$value.date.toString("ddd dd MMM")}'>${$value.hours}</span>
 						{{/if}}
-				{{/each}}
+					{{/each}}
 					</div>
 					<div class="days clearfix">
 					{{each utilization.days}}

@@ -95,22 +95,38 @@ findSkilledConsultants = (consultants, wantedSkills) ->
 	return consultants
 
 normalizeSearchTerm = (searchTerm) ->
-	skills = (skill.name for skill in jitskills.db.skills when skill.tags.indexOf(searchTerm.toLowerCase()) != -1)
+	(skill.name for skill in jitskills.db.skills when skill.tags.indexOf(searchTerm.toLowerCase()) != -1)
 
 txtWantedSkills = $('#txtWantedSkills')
 jitSkillFilter = $('#jitSkillFilters')
 
+keys =
+  enter: 13
+  tab: 9
+
 txtWantedSkills.keyup (e) ->
   if txtWantedSkills.val().length is 0 then return
 
-  skills = normalizeSearchTerm txtWantedSkills.val() || []
-  if not skills.length then return
+  code = (if e.keyCode then e.keyCode else e.which)
+  console.log(code);
 
-  for skill in skills
-    jitSkillFilter.append("<span class='filter' data-skill='#{ skill }'>#{ skill } <a href='#' class='removeFilter'>&nbsp;</a></span>")
+  if code isnt keys.enter
+    $('.ghost-filter').remove()
+    skills = normalizeSearchTerm txtWantedSkills.val() || []
 
-  allWantedSkills = skills.concat getWantedSkillsFromDocument()
-  search({wantedSkills: allWantedSkills }) if allWantedSkills.length isnt 0
+    if not skills.length then return
+
+    for skill in skills
+      jitSkillFilter.append("<span class='ghost-filter' data-skill='#{ skill }'>#{ skill } <a href='#' class='removeFilter'>&nbsp;</a></span>")
+
+  else
+    ghostFilters = getGhostFiltersFromDocument()
+    existingSkillFilters = getWantedSkillsFromDocument()
+
+    allWantedSkills = ghostFilters.concat existingSkillFilters
+    $('.ghost-filter').addClass('filter').removeClass('ghost-filter')
+
+    search({wantedSkills: allWantedSkills }) if allWantedSkills.length isnt 0
 
 $('a.removeFilter').live "click", (e) ->
 	$(e.currentTarget.parentNode).fadeOut "fast", () ->
@@ -138,6 +154,13 @@ getWantedSkillsFromDocument = () ->
 
   return filterSkills
 
+getGhostFiltersFromDocument = () ->
+  ghostFilters = []
+  $("#jitSkillFilters span.ghost-filter").each (index) ->
+    ghostFilters.push $(this).data("skill")
+
+  return ghostFilters
+
 getDepartmentsFromDocument = () ->
 	departments = []
 	$("#organizationFilter span").each (index) ->
@@ -157,10 +180,10 @@ getIntersectingProjects = (consultant, jitDate) ->
 	startDate = jitDate.clone()
 	endDate = jitDate.clone()
 
-	startDate.add(-7).days()
-	endDate.add(21).days()
+	startDate.add(-4).days()
+	endDate.add(22).days()
 
-	intersectors = (project for project in consultant.projects when (new Date(project.startdate).isBefore(endDate) and new Date(project.enddate).isAfter(startDate)))
+	(project for project in consultant.projects when (new Date(project.startdate).isBefore(endDate) and new Date(project.enddate).isAfter(startDate)))
 
 initDateRange = (jitDate) ->
   noOfDaysInRange = 27

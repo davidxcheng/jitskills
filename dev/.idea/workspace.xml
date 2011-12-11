@@ -13,7 +13,6 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
-    <option name="REVERSE_PATCH" value="false" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
@@ -23,10 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="jitsearch.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="jitsearch.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="85" selection-start="2695" selection-end="2695" vertical-scroll-proportion="0.6932814">
+            <state line="9" column="19" selection-start="449" selection-end="496" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -35,16 +34,25 @@
       <file leaf-file-name="trial.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/trial.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="24" selection-start="526" selection-end="545" vertical-scroll-proportion="-10.0">
+            <state line="24" column="40" selection-start="719" selection-end="719" vertical-scroll-proportion="-15.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jitsearch.coffee" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="jitsearch.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="27" selection-start="2644" selection-end="2646" vertical-scroll-proportion="-47.884617">
+            <state line="115" column="0" selection-start="3585" selection-end="3585" vertical-scroll-proportion="0.25980392">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.suggest.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/libs/jquery.suggest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="208" column="26" selection-start="7016" selection-end="7035" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -53,7 +61,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="222" column="0" selection-start="3559" selection-end="3559" vertical-scroll-proportion="0.0">
+            <state line="59" column="1" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -88,18 +96,18 @@
         <option value="$PROJECT_DIR$/js/libs/jquery.suggest.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/js/db.json" />
-        <option value="$PROJECT_DIR$/html/trial.html" />
-        <option value="$PROJECT_DIR$/js/jitsearch.coffee" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/html/jitsearch.html" />
+        <option value="$PROJECT_DIR$/html/trial.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/jitsearch.coffee" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="438" />
-    <option name="y" value="22" />
-    <option name="width" value="1282" />
-    <option name="height" value="1226" />
+    <option name="x" value="651" />
+    <option name="y" value="97" />
+    <option name="width" value="1297" />
+    <option name="height" value="1179" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -127,7 +135,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -164,6 +171,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="html" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -184,17 +209,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.sourceCode.General" />
+    <property name="options.lastSelected" value="preferences.sourceCode.XML" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="XSLT" factoryName="XSLT">
@@ -252,13 +278,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="438" y="22" width="1282" height="1226" extended-state="0" />
+    <frame x="651" y="97" width="1297" height="1179" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19062749" sideWeight="0.9954792" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18838304" sideWeight="0.9990566" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -330,65 +356,55 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/jitskills.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="9" selection-start="46" selection-end="46" vertical-scroll-proportion="0.10288066">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/db.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="27" selection-start="1585" selection-end="1585" vertical-scroll-proportion="0.40329218">
-          <folding />
-        </state>
+        <state line="5" column="9" selection-start="46" selection-end="46" vertical-scroll-proportion="0.10288066" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/jitsearch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/libs/jquery.suggest.js">
+    <entry file="file://$PROJECT_DIR$/js/db.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="27" selection-start="4980" selection-end="4980" vertical-scroll-proportion="1.2139918">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="33" column="89" selection-start="682" selection-end="746" vertical-scroll-proportion="0.4178273" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="19" selection-start="449" selection-end="496" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="12" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0">
+        <state line="16" column="12" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/trial.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="40" selection-start="719" selection-end="719" vertical-scroll-proportion="-15.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="222" column="0" selection-start="3559" selection-end="3559" vertical-scroll-proportion="0.0">
+        <state line="59" column="1" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/libs/jquery.suggest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="208" column="26" selection-start="7016" selection-end="7035" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="27" selection-start="2644" selection-end="2646" vertical-scroll-proportion="-47.884617">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/trial.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="24" selection-start="526" selection-end="545" vertical-scroll-proportion="-10.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="85" selection-start="2695" selection-end="2695" vertical-scroll-proportion="0.6932814">
+        <state line="115" column="0" selection-start="3585" selection-end="3585" vertical-scroll-proportion="0.25980392">
           <folding />
         </state>
       </provider>
