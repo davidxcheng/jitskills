@@ -33,7 +33,7 @@ $(document).ready () ->
         departments: getDepartmentsFromDocument()
         wantedSkills: getWantedSkillsFromDocument()
 
-search = (clues) ->
+search = (clues, callback) ->
   clues = clues || {}
   wantedSkills = clues.wantedSkills || []
   jitDate = clues.jitDate or Date.today()
@@ -50,6 +50,8 @@ search = (clues) ->
   $('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
   $('.jitDate').text(jitDate.toString("ddd dd MMM"))
   formatListingOfSkills()
+
+  if callback then callback()
 
 # TODO: Move to separate file
 getDayByDayUtilizationOfConsultant = (consultant, jitDate) ->
@@ -108,7 +110,6 @@ txtWantedSkills.keyup (e) ->
   if txtWantedSkills.val().length is 0 then return
 
   code = (if e.keyCode then e.keyCode else e.which)
-  console.log(code);
 
   if code isnt keys.enter
     $('.ghost-filter').remove()
@@ -126,7 +127,7 @@ txtWantedSkills.keyup (e) ->
     allWantedSkills = ghostFilters.concat existingSkillFilters
     $('.ghost-filter').addClass('filter').removeClass('ghost-filter')
 
-    search({wantedSkills: allWantedSkills }) if allWantedSkills.length isnt 0
+    search({wantedSkills: allWantedSkills }, () -> txtWantedSkills.val('')) if allWantedSkills.length isnt 0
 
 $('a.removeFilter').live "click", (e) ->
 	$(e.currentTarget.parentNode).fadeOut "fast", () ->
