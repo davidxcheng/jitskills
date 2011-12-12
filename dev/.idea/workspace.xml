@@ -25,7 +25,7 @@
       <file leaf-file-name="jitsearch.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="19" selection-start="449" selection-end="496" vertical-scroll-proportion="0.0">
+            <state line="29" column="31" selection-start="1271" selection-end="1271" vertical-scroll-proportion="-13.125">
               <folding />
             </state>
           </provider>
@@ -43,7 +43,7 @@
       <file leaf-file-name="jitsearch.coffee" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="115" column="0" selection-start="3585" selection-end="3585" vertical-scroll-proportion="0.25980392">
+            <state line="133" column="0" selection-start="4251" selection-end="4251" vertical-scroll-proportion="0.42156863">
               <folding />
             </state>
           </provider>
@@ -61,7 +61,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="1" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+            <state line="44" column="65" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -96,9 +96,9 @@
         <option value="$PROJECT_DIR$/js/libs/jquery.suggest.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/js/db.json" />
-        <option value="$PROJECT_DIR$/html/jitsearch.html" />
         <option value="$PROJECT_DIR$/html/trial.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/html/jitsearch.html" />
         <option value="$PROJECT_DIR$/js/jitsearch.coffee" />
       </list>
     </option>
@@ -369,13 +369,6 @@
         <state line="33" column="89" selection-start="682" selection-end="746" vertical-scroll-proportion="0.4178273" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="19" selection-start="449" selection-end="496" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="12" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0" />
@@ -388,13 +381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="1" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/libs/jquery.suggest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="208" column="26" selection-start="7016" selection-end="7035" vertical-scroll-proportion="0.0">
@@ -402,9 +388,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="65" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/jitsearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="31" selection-start="1271" selection-end="1271" vertical-scroll-proportion="-13.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/jitsearch.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="0" selection-start="3585" selection-end="3585" vertical-scroll-proportion="0.25980392">
+        <state line="133" column="0" selection-start="4251" selection-end="4251" vertical-scroll-proportion="0.42156863">
           <folding />
         </state>
       </provider>

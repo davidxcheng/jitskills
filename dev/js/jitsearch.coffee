@@ -46,6 +46,7 @@ search = (clues, callback) ->
     skilled.utilization = initDateRange jitDate
     skilled.utilization.days = getDayByDayUtilizationOfConsultant(skilled, jitDate)
 
+  $('div#search-stats').html(theSkilled.length);
   $('div#items').empty();
   $('#itemTemplate').tmpl(theSkilled).appendTo('div#items')
   $('.jitDate').text(jitDate.toString("ddd dd MMM"))
@@ -124,8 +125,12 @@ txtWantedSkills.keyup (e) ->
     ghostFilters = getGhostFiltersFromDocument()
     existingSkillFilters = getWantedSkillsFromDocument()
 
-    allWantedSkills = ghostFilters.concat existingSkillFilters
-    $('.ghost-filter').addClass('filter').removeClass('ghost-filter')
+    if ghostFilters.length
+      allWantedSkills = ghostFilters.concat existingSkillFilters
+      $('.ghost-filter').addClass('filter').removeClass('ghost-filter')
+    else
+      console.log 'free text search'
+      allWantedSkills = ghostFilters.concat existingSkillFilters
 
     search({wantedSkills: allWantedSkills }, () -> txtWantedSkills.val('')) if allWantedSkills.length isnt 0
 
