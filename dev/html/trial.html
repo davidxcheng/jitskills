@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Blah</title>
+	<script src="js/libs/jquery.min.js"></script>
+</head>
+<body>
+	<img src="/img/solutionblvd180.gif" width="40" height="40" />
+	<input type="text" id="x" />
+	<div style="width: 300px;">
+		<img class="face" style="float: left;" src="http://a2.twimg.com/profile_images/1235435332/nyfejja_normal.jpg" alt="DC:s quest for tires" />
+		<b style="font-weight: normal; font-size: 17px;">David Cheng</b>
+		<div>
+			<span>david.cheng@solutionblvd.se</span>
+		</div>
+		<div>
+			JavaScript, .NET, SQL, NServiceBus, HTML, CSS, MVC, jQuery, 9-ball
+		</div>
+	</div>
+	<script>
+		$('#x').bind('keyup', function(e){
+			var code = (e.keyCode ? e.keyCode : e.which);
+
+			if(code === 13 && !e.altKey){
+				alert('conduct search');
+			}
+		});
+	</script>
+</body>
+</html>

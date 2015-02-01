@@ -1,5 +1,5 @@
 (function() {
-  var filterByDepartments, findSkilledConsultants, formatListingOfSkills, getDayByDayUtilizationOfConsultant, getDepartmentsFromDocument, getIntersectingProjects, getWantedSkillsFromDocument, initDateRange, initUtilization, jitDateFilter, jitSkillFilter, normalizeSearchTerm, root, search, txtJitDate, txtWantedSkills;
+  var filterByDepartments, findSkilledConsultants, formatListingOfSkills, getDayByDayUtilizationOfConsultant, getDepartmentsFromDocument, getGhostFiltersFromDocument, getIntersectingProjects, getWantedSkillsFromDocument, initDateRange, initUtilization, jitDateFilter, jitSkillFilter, keys, normalizeSearchTerm, root, search, txtJitDate, txtWantedSkills;
   var __hasProp = Object.prototype.hasOwnProperty, __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (__hasProp.call(this, i) && this[i] === item) return i; } return -1; };
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
@@ -66,7 +66,7 @@
     });
   });
 
-  search = function(clues) {
+  search = function(clues, callback) {
     var consultants, departments, jitDate, skilled, theSkilled, wantedSkills, _i, _len;
     clues = clues || {};
     wantedSkills = clues.wantedSkills || [];
@@ -79,10 +79,12 @@
       skilled.utilization = initDateRange(jitDate);
       skilled.utilization.days = getDayByDayUtilizationOfConsultant(skilled, jitDate);
     }
+    $('div#search-stats').html(theSkilled.length);
     $('div#items').empty();
     $('#itemTemplate').tmpl(theSkilled).appendTo('div#items');
     $('.jitDate').text(jitDate.toString("ddd dd MMM"));
-    return formatListingOfSkills();
+    formatListingOfSkills();
+    if (callback) return callback();
   };
 
   getDayByDayUtilizationOfConsultant = function(consultant, jitDate) {
@@ -154,39 +156,58 @@
   };
 
   normalizeSearchTerm = function(searchTerm) {
-    var skill, skills;
-    return skills = (function() {
-      var _i, _len, _ref, _results;
-      _ref = jitskills.db.skills;
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        skill = _ref[_i];
-        if (skill.tags.indexOf(searchTerm.toLowerCase()) !== -1) {
-          _results.push(skill.name);
-        }
+    var skill, _i, _len, _ref, _results;
+    _ref = jitskills.db.skills;
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      skill = _ref[_i];
+      if (skill.tags.indexOf(searchTerm.toLowerCase()) !== -1) {
+        _results.push(skill.name);
       }
-      return _results;
-    })();
+    }
+    return _results;
   };
 
   txtWantedSkills = $('#txtWantedSkills');
 
   jitSkillFilter = $('#jitSkillFilters');
 
+  keys = {
+    enter: 13,
+    tab: 9
+  };
+
   txtWantedSkills.keyup(function(e) {
-    var allWantedSkills, skill, skills, _i, _len;
+    var allWantedSkills, code, existingSkillFilters, ghostFilters, skill, skills, _i, _len, _results;
     if (txtWantedSkills.val().length === 0) return;
-    skills = normalizeSearchTerm(txtWantedSkills.val() || []);
-    if (!skills.length) return;
-    for (_i = 0, _len = skills.length; _i < _len; _i++) {
-      skill = skills[_i];
-      jitSkillFilter.append("<span class='filter' data-skill='" + skill + "'>" + skill + " <a href='#' class='removeFilter'>&nbsp;</a></span>");
-    }
-    allWantedSkills = skills.concat(getWantedSkillsFromDocument());
-    if (allWantedSkills.length !== 0) {
-      return search({
-        wantedSkills: allWantedSkills
-      });
+    code = (e.keyCode ? e.keyCode : e.which);
+    if (code !== keys.enter) {
+      $('.ghost-filter').remove();
+      skills = normalizeSearchTerm(txtWantedSkills.val() || []);
+      if (!skills.length) return;
+      _results = [];
+      for (_i = 0, _len = skills.length; _i < _len; _i++) {
+        skill = skills[_i];
+        _results.push(jitSkillFilter.append("<span class='ghost-filter' data-skill='" + skill + "'>" + skill + " <a href='#' class='removeFilter'>&nbsp;</a></span>"));
+      }
+      return _results;
+    } else {
+      ghostFilters = getGhostFiltersFromDocument();
+      existingSkillFilters = getWantedSkillsFromDocument();
+      if (ghostFilters.length) {
+        allWantedSkills = ghostFilters.concat(existingSkillFilters);
+        $('.ghost-filter').addClass('filter').removeClass('ghost-filter');
+      } else {
+        console.log('free text search');
+        allWantedSkills = ghostFilters.concat(existingSkillFilters);
+      }
+      if (allWantedSkills.length !== 0) {
+        return search({
+          wantedSkills: allWantedSkills
+        }, function() {
+          return txtWantedSkills.val('');
+        });
+      }
     }
   });
 
@@ -224,6 +245,15 @@
     return filterSkills;
   };
 
+  getGhostFiltersFromDocument = function() {
+    var ghostFilters;
+    ghostFilters = [];
+    $("#jitSkillFilters span.ghost-filter").each(function(index) {
+      return ghostFilters.push($(this).data("skill"));
+    });
+    return ghostFilters;
+  };
+
   getDepartmentsFromDocument = function() {
     var departments;
     departments = [];
@@ -251,23 +281,20 @@
   };
 
   getIntersectingProjects = function(consultant, jitDate) {
-    var endDate, intersectors, project, startDate;
+    var endDate, project, startDate, _i, _len, _ref, _results;
     startDate = jitDate.clone();
     endDate = jitDate.clone();
-    startDate.add(-7).days();
-    endDate.add(21).days();
-    return intersectors = (function() {
-      var _i, _len, _ref, _results;
-      _ref = consultant.projects;
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        project = _ref[_i];
-        if (new Date(project.startdate).isBefore(endDate) && new Date(project.enddate).isAfter(startDate)) {
-          _results.push(project);
-        }
+    startDate.add(-4).days();
+    endDate.add(22).days();
+    _ref = consultant.projects;
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      project = _ref[_i];
+      if (new Date(project.startdate).isBefore(endDate) && new Date(project.enddate).isAfter(startDate)) {
+        _results.push(project);
       }
-      return _results;
-    })();
+    }
+    return _results;
   };
 
   initDateRange = function(jitDate) {
